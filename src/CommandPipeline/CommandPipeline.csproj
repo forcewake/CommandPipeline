@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19BCF6A0-0735-4CB8-96E8-73BC15FCBF4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommandPipeline</RootNamespace>
+    <AssemblyName>CommandPipeline</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EnsureThat">
+      <HintPath>..\packages\Ensure.That.2.0.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\EnsureThat.dll\EnsureThat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Infrastructure\Arguments\Argument.cs" />
+    <Compile Include="Infrastructure\Arguments\ArgumentWrapper.cs" />
+    <Compile Include="Infrastructure\Arguments\InArgument.cs" />
+    <Compile Include="Infrastructure\Arguments\InOutArgument.cs" />
+    <Compile Include="Infrastructure\Arguments\OutArgument.cs" />
+    <Compile Include="Infrastructure\Extensions\InArgumentExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Infrastructure\Extensions\TypeExtensions.cs" />
+    <Compile Include="Infrastructure\ParametersContext\Implementation\ParametersContext.cs" />
+    <Compile Include="Infrastructure\ParametersContext\Implementation\ParametersContextContainer.cs" />
+    <Compile Include="Infrastructure\ParametersContext\Implementation\ParametersContextFactory.cs" />
+    <Compile Include="Infrastructure\ParametersContext\IParametersContext.cs" />
+    <Compile Include="Infrastructure\ParametersContext\IParametersContextContainer.cs" />
+    <Compile Include="Infrastructure\ParametersContext\IParametersContextFactory.cs" />
+    <Compile Include="Infrastructure\Pipeline\ICommand.cs" />
+    <Compile Include="Infrastructure\Pipeline\ICommandContainer.cs" />
+    <Compile Include="Infrastructure\Pipeline\IMessageHandlerPipeline.cs" />
+    <Compile Include="Infrastructure\Pipeline\IMessageHandlerPipeline_T.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\Command.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\MessageHandlerPipeline.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\MessageHandlerPipelineBase.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\MessageHandlerPipeline_T.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\NonParameterizedCommand.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\ParameterizedCommand.cs" />
+    <Compile Include="Infrastructure\Pipeline\Implementation\PipelineBuilder.cs" />
+    <Compile Include="Infrastructure\Pipeline\INonParameterizedCommand.cs" />
+    <Compile Include="Infrastructure\Pipeline\IParameterizedCommand.cs" />
+    <Compile Include="Infrastructure\Pipeline\IPipelineBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
