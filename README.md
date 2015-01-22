@@ -84,6 +84,8 @@ context.Set<ExtractHtmlFromUrl, Request>(x => x.Request, new Request { Url = lin
 
 ### Create pipeline
 ```cs
+builder = new PipelineBuilder()
+
 var pipeline = builder.Create(container, context)
     .Register<ExtractHtmlFromUrl>()
     .Register<ConvertHtmlToMardown>()
